@@ -1,6 +1,6 @@
 # C++ Data Structures and Algorithms Cheat Sheet
 
-## Table of Contents
+## Table of Contents <a name="table-of-contents"></a>
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -23,6 +23,7 @@
 		- [2.3 Binary Search](#23-binary-search)
 		- [2.4 Depth-First Search](#24-depth-first-search)
 		- [2.5 Breadth-First Search](#25-breadth-first-search)
+		- [2.6 Tree Traversal](#26-tree-traversal)
 	- [3.0 NP Complete Problems](#30-np-complete-problems)
 		- [3.1 NP Complete](#31-np-complete)
 		- [3.2 Traveling Salesman Problem](#32-traveling-salesman-problem)
@@ -37,8 +38,8 @@
 <!-- /TOC -->
 
 
-## 1.0 Data Structures
-### 1.1 Overview
+## 1.0 Data Structures <a name = "10-data-structures"></a>
+### 1.1 Overview <a name = "11-overview"></a>
 
 ![Legend](General/Legend.png)
 
@@ -48,8 +49,9 @@
 
 ![DataStructureSelection](General/Data Structures Selection.png)
 -------------------------------------------------------
-### 1.2 Vector `std::vector`
+### 1.2 Vector `std::vector` <a name = "12-vector-stdvector"></a>
 **Use for**
+
 * Simple storage
 * Adding but not deleting
 * Serialization
@@ -58,6 +60,7 @@
 * Efficient traversal (contiguous CPU caching)
 
 **Do not use for**
+
 * Insertion/deletion in the middle of the list
 * Dynamically changing storage
 * Non-integer indexing
@@ -76,6 +79,7 @@
 | Find Object  |          `O(n)` |
 
 **Example Code**
+
 ```c++
 std::vector<int> v;
 
@@ -106,23 +110,30 @@ v.erase(v.begin());             //head
 v.erase(v.begin() + index);     //index
 v.pop_back();                   //tail
 
+//Remove by element
+v.erase(remove(v.begin(), v.end(), value), v.end());
+
 //Clear
 v.clear();
 ```
 -------------------------------------------------------
 ### 1.3 Deque `std::deque`
 **Use for**
+
 * Similar purpose of `std::vector`
 * Basically `std::vector` with efficient `push_front` and `pop_front`
 
 **Do not use for**
+
 * C-style contiguous storage (not guaranteed)
 
 **Notes**
+
 * Pronounced 'deck'
 * Stands for **D**ouble **E**nded **Que**ue
 
 **Example Code**
+
 ```c++
 std::deque<int> d;
 
@@ -179,6 +190,7 @@ d.clear();
 | Find Object  |          `O(n)` |
 
 **Example Code**
+
 ```c++
 std::list<int> l;
 
@@ -317,16 +329,19 @@ bool exists = (m.find("value") != m.end());
 unsigned int count = m.count("key");
 ```
 -------------------------------------------------------
-### 1.6 Set `std::set`
+### 1.6 Set `std::set` <a name = "16-set-stdset"></a>
 **Use for**
+
 * Removing duplicates
 * Ordered dynamic storage
 
 **Do not use for**
+
 * Simple storage
 * Direct access by index
 
 **Notes**
+
 * Sets are often implemented with binary search trees
 
 **Time Complexity**
@@ -338,6 +353,7 @@ unsigned int count = m.count("key");
 | Find         |     `O(log(n))` |
 
 **Example Code**
+
 ```c++
 std::set<int> s;
 
@@ -565,6 +581,42 @@ p.pop();
 
 ![DepthFirstSearch](Searching/Animations/Breadth-First Search.gif)
 -------------------------------------------------------
+### 2.6 Tree Traversal <a name="tree-traversal"></a>
+
+**Normal Traverse**
+
+```c++
+struct TreeNode {
+     int val;
+     TreeNode *left;
+     TreeNode *right;
+     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ };
+ 
+ void inorder(TreeNode* root) {
+     inorder(root->left);
+     //do something
+     inorder(root->right);
+ }
+ 
+ void preorder(TreeNode* root) {
+     //do something
+     preorder(root->left);
+     preorder(root->right);
+ }
+ 
+ void postorder(TreeNode* root) {
+     postorder(root->left);
+     postorder(root->right);
+     //do something
+```
+
+**Space:**
+* `O(log(n))`, `n = number of nodes`
+
+
+-------------------------------------------------------
+
 ## 3.0 NP Complete Problems
 ### 3.1 NP Complete
 * **NP Complete** means that a problem is unable to be solved in **polynomial time**
