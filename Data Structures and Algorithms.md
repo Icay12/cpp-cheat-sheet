@@ -250,8 +250,9 @@ l.sort();
 l.reverse();
 ```
 -------------------------------------------------------
-### 1.5 Map `std::map` and `std::unordered_map`
+### 1.5 Map `std::map` and `std::unordered_map` <a name = "15-map-stdmap-and-stdunorderedmap"> </a>
 **Use for**
+
 * Key-value pairs
 * Constant lookups by key
 * Searching if key/value exists
@@ -262,9 +263,11 @@ l.reverse();
     * Hash table
 
 **Do not use for**
+
 * Sorting
 
 **Notes**
+
 * Typically ordered maps (`std::map`) are slower than unordered maps (`std::unordered_map`)
 * Maps are typically implemented as *binary search trees*
 
@@ -289,6 +292,7 @@ l.reverse();
 | Find/Remove Value   |              -- |
 
 **Example Code**
+
 ```c++
 std::map<std::string, std::string> m;
 
@@ -327,6 +331,11 @@ bool exists = (m.find("value") != m.end());
 
 //Count the number of elements with a certain key
 unsigned int count = m.count("key");
+
+//map in ascending order
+std::map<int, std::string> m1;
+//map in descending order
+std::map<int, std::string, std::greater<int> > m2;
 ```
 -------------------------------------------------------
 ### 1.6 Set `std::set` <a name = "16-set-stdset"></a>
@@ -403,6 +412,7 @@ unsigned int count = s.count(20);
 | Top          |          `O(1)` |
 
 **Example Code**
+
 ```c++
 std::stack<int> s;
 
@@ -423,7 +433,7 @@ s.pop();
 int top = s.top();
 ```
 -------------------------------------------------------
-### 1.8 Queue `std::queue`
+### 1.8 Queue `std::queue` <a name="18-queue-stdqueue"></a>
 **Use for**
 * First-In First-Out operations
 * Ex: Simple online ordering system (first come first served)
@@ -434,6 +444,7 @@ int top = s.top();
 * Often implemented as a `std::deque`
 
 **Example Code**
+
 ```c++
 std::queue<int> q;
 
@@ -457,14 +468,17 @@ q.pop();
 -------------------------------------------------------
 ### 1.9 Priority Queue `std::priority_queue`
 **Use for**
+
 * First-In First-Out operations where **priority** overrides arrival time
 * Ex: CPU scheduling (smallest job first, system/user priority)
 * Ex: Medical emergencies (gunshot wound vs. broken arm)
 
 **Notes**
+
 * Often implemented as a `std::vector`
 
 **Example Code**
+
 ```c++
 std::priority_queue<int> p;
 
@@ -581,9 +595,9 @@ p.pop();
 
 ![DepthFirstSearch](Searching/Animations/Breadth-First Search.gif)
 -------------------------------------------------------
-### 2.6 Tree Traversal <a name="tree-traversal"></a>
+### 2.6 Tree Traversal <a name="26-tree-traversal"></a>
 
-**Normal Traverse**
+**Recursive Traversal**
 
 ```c++
 struct TreeNode {
@@ -613,6 +627,9 @@ struct TreeNode {
 
 **Space:**
 * `O(log(n))`, `n = number of nodes`
+
+
+**Morriss Traversal**
 
 
 -------------------------------------------------------
@@ -772,7 +789,7 @@ struct TreeNode {
 
 ![MergeSort](Sorting/Animations/Merge Sort 2.gif)
 -------------------------------------------------------
-### 4.5 Quicksort
+### 4.5 Quicksort <a name = "45-quicksort"></a>
 **Idea:**
 1. Choose a **pivot** from the array
 2. Partition: Reorder the array so that all elements with values *less* than the pivot come before the pivot, and all values *greater* than the pivot come after
